@@ -53,69 +53,125 @@ contract Tokens is Test
 
                                                    HTML code
 
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Test</title>
-    
-  </head>
+ 
+<head>
+
+<meta charset="utf-8">
+
+<title>Test</title>
+
+</head>
+
 <marquee><h1 style="color:white">Automated Teller Machine<h1></marquee>
+
 <body bgcolor="orange">
+
 <div>
 <h1 style="color:white">Total_Supply</h1>
+
 <table >
-<tr><input id="supply" style=" placeholder="Enter total supply" type="text" /></tr>
+
+<tr><input id="supply"  placeholder="Enter total supply" type="text" /></tr>
+
 <tr><button id="ts_click" onclick="totalsupply();">Supply</button></tr>
+
 </table>
 </div>
 
+
+
 <div>
+
 <h1 style="color:white">Transfer<h1>
+
 <table>
-<tr><input id="to_address" placeholder="Enter to address" type="text" /></tr>
+
+<tr>
+<input id="to_address" placeholder="Enter to address" type="text" /></tr>
+
 <tr><input id="trans_amount"placeholder="Enter amount to transfer" type="text" /></tr>
+
 <tr><button id="t_click" onclick="transfer();">Transfer</button></tr>
+
 </table>
+
 </div>
 
+
+
 <div>
+
 <h1 style="color:white">Balance</h1>
+
 <table>
+
 <tr><input id="address" placeholder="Enter address" type="text" /></tr>
+
 <tr><button id="b_click" onclick="balance();">Balance</button></tr>
+
 </table>
+
 </div>
+
+
 
 <div>
 <h1 style="color:white">Approve</h1>
+
 <table>
+
 <tr><input id="spenderaddress" placeholder="Enter spender address"  type="text" />
+
+</tr>
 <tr><input id="spenderamount" placeholder="Enter amount" type="text" />
+</tr>
+
 <tr><button id="w_click" onclick="approve();">Approve</button>
+
 </div>
 
+
+
 <div>
-<h1 style="color:white">Allowance</h1></tr>
+<h1 style="color:white">Allowance</h1>
+</tr>
+
 <table>
+
 <tr><input id="spender_address" placeholder="Enter spender address"  type="text" /></tr>
+
 <tr><button id="o_click" onclick="allowance();">Allowance</button></tr>
+
 </table>
+
 </div>
 
+
+
 <div>
+
 <h1 style="color:white">Transer_From</h1>
+
 <table>
+
 <tr><input id="spender_address" placeholder="Enter from address"  type="text" />
+</tr>
 <tr><input id="to_address" placeholder="Enter to address" type="text" />
-<tr><input id="amount" placeholder="Enter amount to transfer" type="text" />
-<tr><button id="w_click" onclick="transfer_from();">Transfer</button>
+</tr>
+<tr><input id="amount" placeholder="Enter amount to transfer" type="text" /></tr>
+<tr><button id="w_click" onclick="transfer_from();">Transfer</button></tr>
 </div>
+
 
 </body>
+
 <script>
-   
-        web3.eth.defaultAccount = web3.eth.accounts[0];
-        var sybexcon = web3.eth.contract([
+ 
+     web3.eth.defaultAccount = web3.eth.accounts[0];
+     var sybexcon = web3.eth.contract([
+
     {
         "constant": true,
         "inputs": [
@@ -308,110 +364,202 @@ contract Tokens is Test
             }
         });
 
-function totalsupply()
- {
-var sup=document.getElementById('supply');
-var nam=document.getElementById('name');
-var dec=document.getElementById('decimal');
-var sym=document.getElementById('symbol');
-return sybex.totalSupply(sup.value,nam.value,dec.value,sym.value,function(error,result)
-{
-   if(!error) 
-    {
-            alert("Successful:"+result);    
 
-    }
-else
-    {
-    alert("ERROR");
-    }
-});
+
+function totalsupply()
+
+ { 	
+var sup=document.getElementById('supply');
+	
+var nam=document.getElementById('name');
+
+	var dec=document.getElementById('decimal');
+	
+var sym=document.getElementById('symbol');
+
+		return sybex.totalSupply(sup.value,nam.value,dec.value,sym.value,function(error,result)
+
+{
+
+   if(!error) 
+    
+	{
+
+       	   alert("Successful:"+result); 
+   
+
+    	}
+
+	else
+	   {
+
+  	  alert("ERROR");
+   
+	 }
+
 }
+);
+}
+
+
 
 function transfer() 
+
 {
+
 var toadd=document.getElementById('to_address');
+
 var amt=document.getElementById('trans_amount');
+
 return sybex.Transfer(toadd.value,amt.value,function(error,result)
+
 {
-     if(!error) 
-    {
-                    alert(result);    
-    }
-    else
-    {
-        alert("ERROR");
-    }
-});
+  
+  if(!error) 
+
+  	{
+          	alert(result); 
+   	}
+	 else
+  
+	 {
+
+	 alert("ERROR");
+   
+	 }
+
 }
+);
+}
+
+
 
 function balance()
+
 {
-    var add=document.getElementById('address');
-    return sybex.BalanceOf(add.value,function(error,result)
-    {
-      if(!error) 
-    {
-                    alert(result);    
+
+var add=document.getElementById('address');
+
+return sybex.BalanceOf(add.value,function(error,result)
+  
+{
+
+ if(!error) 
+ 
+   {
+ 	 alert(result); 
+
     }
     else
     {
-        alert("ERROR");
+
+	  alert("ERROR");
+   
     }
-    });
+
+    }
+);
+
 }
+
+
 
 function approve()
+
 {
+
 var spenadd=document.getElementById('spenderaddress');
+
 var spenamount=document.getElementById('spenderamount');
+
 return sybex.Approve(spenadd.value,spenamount.value,function(error,result)
+
 {
-      if(!error) 
-    {
-                    alert(result);    
-    }
-    else
-    {
-        alert("ERROR");
-    }
-});
+    
+  if(!error)
+	{
+
+                    alert(result);
+	 }
+
+    	else
+
+    	{
+
+	        alert("ERROR");
+    
+	}
+
+}
+);
+
 }
 
+
+
 function allowance()
+
 {
+
 var spenadd=document.getElementById('spender_address');
+
 return sybex.Allowance(spenadd.value,function(error,result)
+
 {
+
   if(!error) 
-    {
-            alert(result);    
-    }
-else
-    {
-    alert("ERROR");
-    }
-});
+
+    	{
+	 alert(result);
+  	 }
+
+	else
+
+	{
+
+    	alert("ERROR");
+   
+ 	}
+
 }
+);
+
+}
+
+
 
 
 function transfer_from()
- {
-var spenadd=document.getElementById('spender_address');
-var toadd=document.getElementById('to_address');
-var amt=document.getElementById('amount');
-return sybex.TransferFrom(spenadd.value,toadd.value,amt.value,function(error,result)
-{
-   if(!error) 
-    {
-            alert("Successful:"+result);    
 
-    }
-else
-    {
+{
+
+var spenadd=document.getElementById('spender_address');
+
+var toadd=document.getElementById('to_address');
+
+var amt=document.getElementById('amount');
+
+return sybex.TransferFrom(spenadd.value,toadd.value,amt.value,function(error,result)
+
+{
+
+  if(!error)
+   	{
+    	 alert("Successful:"+result);
+   	 }
+     	else
+
+   	 {
+	
     alert("ERROR");
-    }
-});
+  
+	  }
+
 }
+);
+
+}
+
 </script>
+
 </html>
